@@ -6,9 +6,10 @@
 <meta name="theme-color" content="#1F5F8B">
 <title>Margen</title>
 <style>
-:root{--bg:#FAFAF7;--sf:#fff;--ink:#1B1B1F;--mut:#5A5F66;--pri:#1F5F8B;--pos:#1B6B4A;--sim:#FFD54F;--simd:#8A6100;--cau:#A34100;--ln:#D9DBD6;--tint:#E6F0F7;--gt:#E3F2EA}
+:root{--bg:#FAFAF7;--sf:#fff;--ink:#1B1B1F;--mut:#5A5F66;--pri:#1F5F8B;--pos:#1B6B4A;--sim:#FFD54F;--simd:#8A6100;--cau:#A34100;--ln:#D9DBD6;--tint:#E6F0F7;--gt:#E3F2EA;--out:#E9EAE5;--onp:#fff;color-scheme:light}
+:root[data-theme=dark]{--bg:#121316;--sf:#1C1E22;--ink:#ECEDEF;--mut:#A8ADB5;--pri:#8FC3EA;--pos:#7DD3A8;--simd:#FFD54F;--cau:#FFA46B;--ln:#3A3D43;--tint:#1B2B38;--gt:#173324;--out:#000;--onp:#0F1A24;color-scheme:dark}
 *{box-sizing:border-box;margin:0}
-body{font:1rem/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#E9EAE5;color:var(--ink);font-variant-numeric:tabular-nums}
+body{font:1rem/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--out);color:var(--ink);font-variant-numeric:tabular-nums}
 #app{position:relative;max-width:430px;height:100dvh;margin:auto;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;padding-top:env(safe-area-inset-top)}
 @media(min-width:500px){body{padding:1rem}#app{height:min(840px,calc(100dvh - 2rem));border-radius:28px;box-shadow:0 8px 40px #0003}}
 main{flex:1;overflow:auto;padding:1rem 1rem 6.5rem}
@@ -19,11 +20,11 @@ h1{font-size:1.5rem;margin-bottom:.75rem}h2{font-size:1.125rem;margin:1.25rem 0 
 .c{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:1rem;margin-bottom:.75rem}
 .c.g{background:var(--gt);border-color:var(--pos)}
 .btn{min-height:48px;padding:0 1.1rem;border-radius:24px;border:2px solid var(--pri);background:var(--sf);color:var(--pri);font:inherit;font-weight:600;cursor:pointer}
-.btn.p{background:var(--pri);color:#fff}
+.btn.p{background:var(--pri);color:var(--onp)}
 .chips{display:flex;gap:.5rem;flex-wrap:wrap}
 .ev{display:flex;justify-content:space-between;align-items:center;gap:.5rem;min-height:48px;padding:.5rem .75rem;border-radius:12px;background:var(--sf);border:1px solid var(--ln);border-left:5px solid var(--pri);margin:.3rem 0}
 .ev.s{border:2px dashed var(--mut);border-left:2px dashed var(--mut)}
-.sim{display:inline-block;background:var(--sim);color:var(--ink);border:2px solid var(--simd);border-radius:10px;padding:0 .5rem;font-weight:700}
+.sim{display:inline-block;background:var(--sim);color:#1B1B1F;border:2px solid var(--simd);border-radius:10px;padding:0 .5rem;font-weight:700}
 .bar{height:14px;background:var(--ln);border-radius:7px;overflow:hidden;margin:.6rem 0}
 .bar i{display:block;height:100%;width:0;background:var(--pos);transition:width .7s}
 .top{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:.75rem 0}
@@ -33,21 +34,24 @@ h1{font-size:1.5rem;margin-bottom:.75rem}h2{font-size:1.125rem;margin:1.25rem 0 
 .cell.td{border:2px solid var(--pri);font-weight:700}
 .dot{position:absolute;bottom:6px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--pri)}
 nav{display:flex;border-top:1px solid var(--ln);background:var(--sf);padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;min-height:60px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:inherit;font-size:.75rem;color:var(--mut);cursor:pointer}
+nav button{flex:1;min-width:0;overflow-wrap:anywhere;min-height:60px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:inherit;font-size:.75rem;color:var(--mut);cursor:pointer}
 nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 nav [aria-current]{color:var(--pri);font-weight:700;box-shadow:inset 0 3px var(--pri)}
 .fab{position:absolute;right:1rem;bottom:calc(76px + env(safe-area-inset-bottom));z-index:3;box-shadow:0 4px 14px #0003}
 #ov{position:absolute;inset:0;background:#0007;display:flex;align-items:flex-end;z-index:6}#ov[hidden],#toast[hidden]{display:none}
 .sh{background:var(--sf);width:100%;border-radius:24px 24px 0 0;padding:1.25rem 1rem calc(1rem + env(safe-area-inset-bottom));max-height:92%;overflow:auto}
 label{display:block;font-weight:600;margin:.8rem 0 .25rem}
-input,select{width:100%;min-height:48px;font:inherit;padding:0 .75rem;border:2px solid var(--mut);border-radius:12px;background:#fff;color:var(--ink)}
+input,select{width:100%;min-height:48px;font:inherit;padding:0 .75rem;border:2px solid var(--mut);border-radius:12px;background:var(--sf);color:var(--ink)}
 .btns{display:flex;gap:.75rem;justify-content:flex-end;margin-top:1.25rem}
 .row{display:flex;gap:.5rem}.row>*{flex:1}
-#toast{position:absolute;left:1rem;right:1rem;bottom:calc(76px + env(safe-area-inset-bottom));z-index:7;background:var(--ink);color:#fff;border-radius:16px;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-#toast .btn{background:#fff;min-height:44px}
+#toast{position:absolute;left:1rem;right:1rem;bottom:calc(76px + env(safe-area-inset-bottom));z-index:7;background:var(--ink);color:var(--bg);border-radius:16px;padding:.75rem 1rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+#toast .btn{background:var(--bg);min-height:44px}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;z-index:9;background:#fff;padding:.5rem;border-radius:8px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.hd{display:flex;align-items:center;gap:.5rem;justify-content:space-between;margin-bottom:.75rem}.hd h1{margin:0}.hd .btn{min-width:48px;padding:0 .7rem}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.rm *{transition:none!important;animation:none!important}
 </style>
 </head>
 <body>
@@ -60,55 +64,72 @@ input,select{width:100%;min-height:48px;font:inherit;padding:0 .75rem;border:2px
 <div id="ov" hidden></div>
 </div>
 <script>
-const L=(navigator.language||'en').toLowerCase().startsWith('es')?'es':'en',LOC=L=='es'?'es-MX':(navigator.language||'en-US');
-document.documentElement.lang=L;
-const D={en:{home:'Home',cards:'Cards',cal:'Calendar',sim:'Simulate',goals:'Goals',hi:'Hi, good to see you',have:'Money you have',est:'Estimated from what you entered. We never ask for your bank login.',can:'You can spend (next 7 days)',why:'What you have, minus what is already planned: bills, subscriptions and card payments.',up:'Coming up',none:'Nothing planned yet.',quick:'Quick add',tipT:'Tip',tip:'Logging a snack takes 5 seconds. Doing it daily keeps your estimate close to real.',add:'Add movement',addC:'Add card',addG:'New goal',type:'Type',exp:'Expense',inc:'Income',cat:'Category',amt:'Amount',desc:'Description (optional)',rep:'Repeat',once:'Only once',daily:'Every day',weekly:'Every week',monthly:'Every month',date:'Date',acc:'Account',save:'Save',cancel:'Cancel',food:'Food',snack:'Snack',social:'Social',services:'Services',school:'School',transport:'Transport',other:'Other',pl:'Planned',sp:'Spontaneous',today:'Today',view:'View',vd:'Daily',vw:'Weekly',vm:'Monthly',prev:'Previous',next:'Next',bal:'Balance',ev:'events',sday:'For this day',plan:'What expenses are you planning?',addS:'Add to simulation',simd:'Simulated',note:'Simulations are never saved to your budget.',empty:'Add an expense to see how your week would look.',ok:'Good news: you can spend this and still be covered. At your tightest point you would still have {a}.',tight:'This would feel tight on {d}. You could spend up to {a} and stay covered, or wait for your next income.',rm:'Remove',debit:'Debit',credit:'Credit',bank:'Bank',l4:'Last 4 digits',cur:'Current amount (estimate)',lim:'Credit limit',clo:'Closing day of the month',due:'Payment due day',availC:'Available credit',est2:'Estimated available',cd:'Closes on day {a}, due on day {b}',priv:'We only ask for the bank name and the last 4 digits. Never your login.',rem:'Want a gentle reminder 3 days before due dates?',yes:'Yes, remind me',later:'Not now',gq:'What is your goal?',gper:'Period',gamt:'How much do you want to save?',gd:'Save {a} today',gw:'Save {a} this week',gm:'Save {a} this month',of:'{a} of {b}',plus:'Add {a}',g0:'Ready when you are.',g1:'Nice start. Keep going at your own pace.',g2:'Goal reached. Great work!',added:'Added',undo:'Undo',coffee:'Coffee',tacos:'Tacos',ccl:'Card closes',cdu:'Card payment',allow:'Weekly allowance',gym:'Gym',spot:'Spotify',skip:'Skip to content',nav:'Main navigation'},
-es:{home:'Inicio',cards:'Tarjetas',cal:'Calendario',sim:'Simular',goals:'Metas',hi:'Hola, qué bueno verte',have:'Dinero que tienes',est:'Estimado con lo que ingresaste. Nunca pedimos tu acceso al banco.',can:'Puedes gastar (próximos 7 días)',why:'Lo que tienes, menos lo que ya está planeado: pagos, suscripciones y tarjetas.',up:'Próximamente',none:'Aún no hay nada planeado.',quick:'Registro rápido',tipT:'Tip',tip:'Registrar un antojo toma 5 segundos. Hacerlo cada día mantiene tu estimado cerca de la realidad.',add:'Agregar movimiento',addC:'Agregar tarjeta',addG:'Nueva meta',type:'Tipo',exp:'Gasto',inc:'Ingreso',cat:'Categoría',amt:'Monto',desc:'Descripción (opcional)',rep:'Repetir',once:'Solo una vez',daily:'Cada día',weekly:'Cada semana',monthly:'Cada mes',date:'Fecha',acc:'Cuenta',save:'Guardar',cancel:'Cancelar',food:'Comida',snack:'Antojo',social:'Salidas',services:'Servicios',school:'Escuela',transport:'Transporte',other:'Otro',pl:'Planeado',sp:'Espontáneo',today:'Hoy',view:'Vista',vd:'Diaria',vw:'Semanal',vm:'Mensual',prev:'Anterior',next:'Siguiente',bal:'Saldo',ev:'eventos',sday:'Para este día',plan:'¿Qué gastos estás planeando?',addS:'Agregar a la simulación',simd:'Simulado',note:'Las simulaciones nunca se guardan en tu presupuesto.',empty:'Agrega un gasto para ver cómo quedaría tu semana.',ok:'Buenas noticias: puedes gastarlo y seguir cubierto. En tu punto más justo todavía tendrías {a}.',tight:'Esto quedaría justo el {d}. Podrías gastar hasta {a} y seguir cubierto, o esperar a tu próximo ingreso.',rm:'Quitar',debit:'Débito',credit:'Crédito',bank:'Banco',l4:'Últimos 4 dígitos',cur:'Monto actual (estimado)',lim:'Límite de crédito',clo:'Día de corte del mes',due:'Día de pago',availC:'Crédito disponible',est2:'Disponible estimado',cd:'Corte el día {a}, pago el día {b}',priv:'Solo pedimos el nombre del banco y los últimos 4 dígitos. Nunca tu acceso.',rem:'¿Quieres un recordatorio amable 3 días antes de cada pago?',yes:'Sí, avísame',later:'Ahora no',gq:'¿Cuál es tu meta?',gper:'Periodo',gamt:'¿Cuánto quieres ahorrar?',gd:'Ahorrar {a} hoy',gw:'Ahorrar {a} esta semana',gm:'Ahorrar {a} este mes',of:'{a} de {b}',plus:'Agregar {a}',g0:'Cuando quieras empezar.',g1:'Buen comienzo. Sigue a tu ritmo.',g2:'¡Meta lograda! Buen trabajo.',added:'Agregado',undo:'Deshacer',coffee:'Café',tacos:'Tacos',ccl:'Corte de tarjeta',cdu:'Pago de tarjeta',allow:'Mesada semanal',gym:'Gimnasio',spot:'Spotify',skip:'Ir al contenido',nav:'Navegación principal'}};
+let P={lang:'auto',ts:100,th:'system',mo:'system',rem:3};
+try{Object.assign(P,JSON.parse(localStorage.getItem('margen')||'{}'))}catch(e){}
+let L,LOC;const MQ=matchMedia('(prefers-color-scheme: dark)');
+const D={en:{home:'Home',cards:'Cards',cal:'Calendar',sim:'Simulate',goals:'Goals',hi:'Hi, good to see you',have:'Money you have',est:'Estimated from what you entered. We never ask for your bank login.',can:'You can spend (next 7 days)',why:'What you have, minus what is already planned: bills, subscriptions and card payments.',up:'Coming up',none:'Nothing planned yet.',quick:'Quick add',tipT:'Tip',tip:'Logging a snack takes 5 seconds. Doing it daily keeps your estimate close to real.',add:'Add expense or income',addC:'Add card',addG:'New goal',type:'Type',exp:'Expense',inc:'Income',cat:'Category',amt:'Amount',desc:'Description (optional)',rep:'Repeat',once:'Only once',daily:'Every day',weekly:'Every week',monthly:'Every month',date:'Date',acc:'Account',save:'Save',cancel:'Cancel',food:'Food',snack:'Snack',social:'Social',services:'Services',school:'School',transport:'Transport',other:'Other',pl:'Planned',sp:'Spontaneous',today:'Today',view:'View',vd:'Daily',vw:'Weekly',vm:'Monthly',prev:'Previous',next:'Next',bal:'Balance',ev:'events',sday:'For this day',plan:'What expenses are you planning?',addS:'Simulate this expense',simd:'Simulated',note:'Simulations are never saved to your budget.',empty:'Add an expense to see how your week would look.',ok:'You can spend this and still be covered. Your tightest day would still leave you {a}.',tight:'This would feel tight on {d}. You could spend up to {a} and stay covered, or wait for your next income.',rm:'Remove',debit:'Debit',credit:'Credit',bank:'Bank',l4:'Last 4 digits',cur:'How much is in it now? (estimate)',lim:'Credit limit',clo:'Closing day of the month',due:'Payment due day',availC:'Available credit',est2:'Estimated available',cd:'Closes on day {a}, due on day {b}',priv:'We only ask for the bank name and the last 4 digits. Never your login.',rem:'Want a gentle reminder a few days before each payment?',yes:'Yes, remind me',later:'Not now',gq:'What is your goal?',gper:'Period',gamt:'How much do you want to save?',gd:'Save {a} today',gw:'Save {a} this week',gm:'Save {a} this month',of:'{a} of {b}',plus:'Add {a}',g0:'Ready when you are.',g1:'Nice start. Keep going at your own pace.',g2:'Goal reached. Great work!',added:'Added',undo:'Undo',coffee:'Coffee',tacos:'Tacos',ccl:'Card closes',cdu:'Card payment',allow:'Weekly allowance',gym:'Gym',spot:'Spotify',skip:'Skip to content',nav:'Main navigation',payB:'Add payment amounts',pend:'Amount pending',payT:'Card payment',payH:'Enter what your bank shows. We add it to your calendar as a planned payment.',mn:'Minimum payment',fl:'Full payment',pk:'Which one will you pay?',errMn:'The minimum can’t be higher than the full payment. Please check both amounts.',payOk:'Payment added to your calendar',clBan:'{c} closed {r}.',clAsk:'Add the minimum and full payment your bank shows. Payment is due {d}.',set:'Settings',back:'Back',slang:'Language',auto:'Same as device',stext:'Text size',s1:'Normal',s2:'Large',s3:'Extra large',stheme:'Theme',light:'Light',dark:'Dark',smot:'Animations',reduce:'Reduce',srem:'Payment reminders',off:'Off',d1:'1 day before',d3:'3 days before',d5:'5 days before',sample:'Preview',sampleT:'This is how text and amounts will look.',setNote:'Changes apply right away. Everything stays on this device, so feel free to use made-up numbers.',noacc:'No account',obT:'Set up in 3 steps',obH:'It takes about 2 minutes. You can skip any step.',ob1:'Add your fixed income',ob2:'Add your debit card',ob3:'Add your credit card',addB:'Add',done:'Done',noCard:'No cards yet. Add one to see your estimated amounts.',noGoal:'No goals yet. A small weekly goal is a good start.',simNo:'Tip: add your income and cards first so the simulation uses your real numbers.',fac:'Facilitator tools',facH:'For usability tests. Moving the date forward applies your planned payments up to that day.',fdate:'App date',smp:'Load sample data',del:'Delete my data',smpQ:'This replaces your current data with an example. Continue?',delQ:'This deletes everything you entered on this device. Continue?',smpOk:'Sample data loaded',delOk:'Data deleted',fday:'Testing date: {d}',dateOk:'App date moved to {d}',duBan:'{c}: your payment of {a} is due {r}.'},
+es:{home:'Inicio',cards:'Tarjetas',cal:'Calendario',sim:'Simular',goals:'Metas',hi:'Hola, qué bueno verte',have:'Dinero que tienes',est:'Estimado con lo que ingresaste. Nunca pedimos tu acceso al banco.',can:'Puedes gastar (próximos 7 días)',why:'Lo que tienes, menos lo que ya está planeado: pagos, suscripciones y tarjetas.',up:'Próximamente',none:'Aún no hay nada planeado.',quick:'Registro rápido',tipT:'Tip',tip:'Registrar un antojo toma 5 segundos. Hacerlo cada día mantiene tu estimado cerca de la realidad.',add:'Agregar gasto o ingreso',addC:'Agregar tarjeta',addG:'Nueva meta',type:'Tipo',exp:'Gasto',inc:'Ingreso',cat:'Categoría',amt:'Monto',desc:'Descripción (opcional)',rep:'Repetir',once:'Solo una vez',daily:'Cada día',weekly:'Cada semana',monthly:'Cada mes',date:'Fecha',acc:'Cuenta',save:'Guardar',cancel:'Cancelar',food:'Comida',snack:'Antojo',social:'Salidas',services:'Servicios',school:'Escuela',transport:'Transporte',other:'Otro',pl:'Planeado',sp:'Espontáneo',today:'Hoy',view:'Vista',vd:'Diaria',vw:'Semanal',vm:'Mensual',prev:'Anterior',next:'Siguiente',bal:'Saldo',ev:'eventos',sday:'Para este día',plan:'¿Qué gastos estás planeando?',addS:'Simular este gasto',simd:'Simulado',note:'Las simulaciones nunca se guardan en tu presupuesto.',empty:'Agrega un gasto para ver cómo quedaría tu semana.',ok:'Puedes gastarlo y seguir cubierto. Tu día más justo aún te dejaría {a}.',tight:'Esto quedaría justo el {d}. Podrías gastar hasta {a} y seguir cubierto, o esperar a tu próximo ingreso.',rm:'Quitar',debit:'Débito',credit:'Crédito',bank:'Banco',l4:'Últimos 4 dígitos',cur:'¿Cuánto hay ahora? (estimado)',lim:'Límite de crédito',clo:'Día de corte del mes',due:'Día de pago',availC:'Crédito disponible',est2:'Disponible estimado',cd:'Corte el día {a}, pago el día {b}',priv:'Solo pedimos el nombre del banco y los últimos 4 dígitos. Nunca tu acceso.',rem:'¿Quieres un recordatorio amable unos días antes de cada pago?',yes:'Sí, avísame',later:'Ahora no',gq:'¿Cuál es tu meta?',gper:'Periodo',gamt:'¿Cuánto quieres ahorrar?',gd:'Ahorrar {a} hoy',gw:'Ahorrar {a} esta semana',gm:'Ahorrar {a} este mes',of:'{a} de {b}',plus:'Agregar {a}',g0:'Cuando quieras empezar.',g1:'Buen comienzo. Sigue a tu ritmo.',g2:'¡Meta lograda! Buen trabajo.',added:'Agregado',undo:'Deshacer',coffee:'Café',tacos:'Tacos',ccl:'Corte de tarjeta',cdu:'Pago de tarjeta',allow:'Mesada semanal',gym:'Gimnasio',spot:'Spotify',skip:'Ir al contenido',nav:'Navegación principal',payB:'Agregar montos de pago',pend:'Monto pendiente',payT:'Pago de tarjeta',payH:'Escribe lo que indica tu banco. Lo agregamos a tu calendario como pago planeado.',mn:'Pago mínimo',fl:'Pago total',pk:'¿Cuál vas a pagar?',errMn:'El pago mínimo no puede ser mayor que el total. Revisa ambos montos.',payOk:'Pago agregado a tu calendario',clBan:'{c} hizo corte {r}.',clAsk:'Agrega el pago mínimo y el total que indica tu banco. El pago vence el {d}.',set:'Ajustes',back:'Atrás',slang:'Idioma',auto:'Igual que el dispositivo',stext:'Tamaño de letra',s1:'Normal',s2:'Grande',s3:'Muy grande',stheme:'Tema',light:'Claro',dark:'Oscuro',smot:'Animaciones',reduce:'Reducir',srem:'Recordatorios de pago',off:'Apagados',d1:'1 día antes',d3:'3 días antes',d5:'5 días antes',sample:'Vista previa',sampleT:'Así se verán el texto y los montos.',setNote:'Los cambios se aplican al instante. Todo se queda en este dispositivo, así que puedes usar números inventados.',noacc:'Sin cuenta',obT:'Configura en 3 pasos',obH:'Toma unos 2 minutos. Puedes saltarte cualquier paso.',ob1:'Agrega tu ingreso fijo',ob2:'Agrega tu tarjeta de débito',ob3:'Agrega tu tarjeta de crédito',addB:'Agregar',done:'Listo',noCard:'Aún no hay tarjetas. Agrega una para ver tus montos estimados.',noGoal:'Aún no hay metas. Una meta semanal pequeña es un buen inicio.',simNo:'Tip: agrega primero tu ingreso y tus tarjetas para que la simulación use tus números reales.',fac:'Herramientas para el facilitador',facH:'Para pruebas de usabilidad. Al avanzar la fecha se aplican tus pagos planeados hasta ese día.',fdate:'Fecha de la app',smp:'Cargar datos de ejemplo',del:'Borrar mis datos',smpQ:'Esto reemplaza tus datos actuales por un ejemplo. ¿Continuar?',delQ:'Esto borra todo lo que ingresaste en este dispositivo. ¿Continuar?',smpOk:'Datos de ejemplo cargados',delOk:'Datos borrados',fday:'Fecha de prueba: {d}',dateOk:'Fecha de la app: {d}',duBan:'{c}: tu pago de {a} vence {r}.'}};
 const t=k=>D[L][k]||k;
 const $=s=>document.querySelector(s),M=$('#main'),N=$('#nav'),OV=$('#ov'),TO=$('#toast'),FAB=$('#fab');
-$('#sk').textContent=t('skip');N.setAttribute('aria-label',t('nav'));
+function prefs(){const dv=navigator.language||'en',h=document.documentElement;L=P.lang=='auto'?(dv.toLowerCase().startsWith('es')?'es':'en'):P.lang;LOC=P.lang=='auto'?dv:(L=='es'?'es-MX':'en-US');h.lang=L;h.style.fontSize=P.ts+'%';h.dataset.theme=P.th=='system'?(MQ.matches?'dark':'light'):P.th;h.classList.toggle('rm',P.mo=='reduce');$('#sk').textContent=t('skip');N.setAttribute('aria-label',t('nav'));try{localStorage.setItem('margen',JSON.stringify(P))}catch(e){}}
+prefs();MQ.onchange=()=>P.th=='system'&&prefs();
 /* dates as integer day numbers */
 const D0=new Date();D0.setHours(0,0,0,0);
 const dn=d=>Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5);
 const fd=n=>{const x=new Date(n*864e5);return new Date(x.getUTCFullYear(),x.getUTCMonth(),x.getUTCDate())};
-const TD=dn(D0),dom=n=>fd(n).getDate(),pad=x=>String(x).padStart(2,'0');
+let TD=dn(D0)+(P.off||0);const dom=n=>fd(n).getDate(),pad=x=>String(x).padStart(2,'0');
 const iso=n=>{const d=fd(n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
 const pd=v=>{const [y,m,d]=v.split('-').map(Number);return v?dn(new Date(y,m-1,d)):0};
 const fmt=n=>(n<0?'−':'')+'$'+Math.abs(n).toLocaleString(LOC,{maximumFractionDigits:2});
 const ds=(n,o={weekday:'short',day:'numeric',month:'short'})=>fd(n).toLocaleDateString(LOC,o);
 /* data (in memory) */
-const A=[{id:'d1',kd:'d',n:'BBVA',num:'2866',b:700},{id:'d2',kd:'d',n:'Plata',num:'2665',b:350},{id:'c1',kd:'c',n:'Plata',num:'0433',lim:10000,used:2300,cl:dom(TD+3),du:dom(TD+6)}];
-let R=[
-{k:'allow',typ:'inc',amt:1500,f:'weekly',s:TD-2,ac:'d1',pl:true},
-{k:'gym',typ:'exp',amt:450,f:'monthly',s:TD-60,dom:dom(TD+2),ac:'d1',pl:true},
-{k:'ccl',typ:'cl',amt:0,f:'monthly',s:TD-60,dom:dom(TD+3),ac:'d1',cc:'c1',pl:true},
-{k:'spot',typ:'exp',amt:129,f:'monthly',s:TD-60,dom:dom(TD+4),ac:'d1',pl:true},
-{k:'cdu',typ:'due',amt:800,f:'monthly',s:TD-60,dom:dom(TD+6),ac:'d1',cc:'c1',pl:true}];
-let G=[{p:'w',amt:500,sv:200}];
+const A=[],R=[],G=[];let U=0;
 const S={tab:'home',cv:'week',cd:TD,sd:TD,sl:[]};let asked=0,LF=null;
 const Q=[{k:'coffee',amt:45,cat:'snack'},{k:'tacos',amt:80,cat:'food'}];
 const CATS=['food','snack','social','services','school','transport','other'];
 const nm=e=>e.k?t(e.k):e.t;
-const acc=id=>A.find(a=>a.id==id),an=id=>{const a=acc(id);return a.n+' ••'+a.num};
+const acc=id=>A.find(a=>a.id==id)||{kd:'d',n:'',num:''},an=id=>{const a=acc(id);return a.n?a.n+' ••'+a.num:t('noacc')};
 /* money logic */
 const hit=(r,n)=>n>=r.s&&(r.f=='once'?n==r.s:r.f=='daily'||(r.f=='weekly'?(n-r.s)%7==0:dom(n)==(r.dom||dom(r.s))));
 const evs=n=>R.filter(r=>hit(r,n));
 const cash=e=>e.typ=='inc'?e.amt:(e.typ=='cl'||(e.typ=='exp'&&acc(e.ac).kd=='c'))?0:-e.amt;
 const sum=n=>evs(n).reduce((s,e)=>s+cash(e),0);
-const base=()=>A.filter(a=>a.kd=='d').reduce((s,a)=>s+a.b,0);
+const base=()=>U+A.filter(a=>a.kd=='d').reduce((s,a)=>s+a.b,0);
 const bal=n=>{let b=base();if(n>=TD){for(let m=TD;m<=n;m++)b+=sum(m)}else for(let m=n+1;m<TD;m++)b-=sum(m);return b};
 const safe=n=>{let x=1e12;for(let i=0;i<7;i++)x=Math.min(x,bal(n+i));return x};
 const est=a=>{const e=evs(TD).filter(x=>x.ac==a.id);return a.kd=='d'?a.b+e.reduce((s,x)=>s+cash(x),0):a.lim-a.used-e.filter(x=>x.typ=='exp').reduce((s,x)=>s+x.amt,0)};
+const DB='margen-data';
+function save(){try{localStorage.setItem(DB,JSON.stringify({A,R,G,u:U,last:TD}))}catch(e){}}
+function roll(to){for(let m=TD;m<to;m++)for(const e of evs(m)){const a=acc(e.ac),c=a.kd=='c',cc=e.cc&&acc(e.cc);
+if(e.typ=='inc'&&!c){a.id?a.b+=e.amt:U+=e.amt}
+else if(e.typ=='exp'){if(c)a.used+=e.amt;else a.id?a.b-=e.amt:U-=e.amt}
+else if(e.typ=='due'){a.id?a.b-=e.amt:U-=e.amt;if(cc&&cc.kd=='c')cc.used=Math.max(0,cc.used-e.amt);e.amt=e.mn=e.fl=0}}
+TD=to;S.cd=S.sd=to}
+function load(){try{const d=JSON.parse(localStorage.getItem(DB));if(d){A.push(...d.A);R.push(...d.R);G.push(...d.G);U=d.u||0;if(d.last<TD){const to=TD;TD=d.last;roll(to)}}}catch(e){}}
+function wipe(){A.length=R.length=G.length=0;U=0;P.off=0;TD=dn(D0);S.cd=S.sd=TD;S.sl=[];asked=0;prefs()}
+function sample(){wipe();A.push({id:'d1',kd:'d',n:'BBVA',num:'2866',b:700},{id:'d2',kd:'d',n:'Plata',num:'2665',b:350},{id:'c1',kd:'c',n:'Plata',num:'0433',lim:10000,used:2300,cl:dom(TD),du:dom(TD+6)});
+R.push({k:'allow',typ:'inc',amt:1500,f:'weekly',s:TD-2,ac:'d1',pl:true},{k:'gym',typ:'exp',amt:450,f:'monthly',s:TD-60,dom:dom(TD+2),ac:'d1',pl:true},{k:'ccl',typ:'cl',amt:0,f:'monthly',s:TD-60,dom:dom(TD),ac:'d1',cc:'c1',pl:true},{k:'spot',typ:'exp',amt:129,f:'monthly',s:TD-60,dom:dom(TD+4),ac:'d1',pl:true},{k:'cdu',typ:'due',amt:0,f:'monthly',s:TD-60,dom:dom(TD+6),ac:'d1',cc:'c1',pl:true});G.push({p:'w',amt:500,sv:200})}
+load();
 /* views */
-const row=e=>`<div class="ev${e.pl?'':' s'}"><span><b>${nm(e)}</b><br><small>${e.pl?t('pl'):t('sp')} · ${an(e.cc||e.ac)}</small></span><b class="${e.typ=='inc'?'pos':''}">${e.amt?(e.typ=='inc'?'+':'−')+fmt(e.amt):''}</b></div>`;
+const row=e=>`<div class="ev${e.pl?'':' s'}"><span><b>${nm(e)}</b><br><small>${e.pl?t('pl'):t('sp')} · ${an(e.cc||e.ac)}</small></span>${e.typ=='cl'?`<button class="btn" data-a="pay" data-c="${e.cc}">${t('payB')}</button>`:e.amt?`<b class="${e.typ=='inc'?'pos':''}">${(e.typ=='inc'?'+':'−')+fmt(e.amt)}</b>`:e.typ=='due'?`<small>${t('pend')}</small>`:''}</div>`;
 const upc=k=>{let o='',c=0;for(let n=TD;n<=TD+45&&c<k;n++)for(const e of evs(n))if(c++<k)o+=`<p class="m">${ds(n)}</p>`+row(e);return o||`<p class="m">${t('none')}</p>`};
 const op=a=>a.map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
+const GEAR='<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>';
+const nxt=(r,n,d)=>{for(let i=0;i<=62;i++)if(hit(r,n+d*i))return n+d*i;return null};
+const rel=n=>new Intl.RelativeTimeFormat(LOC,{numeric:'auto'}).format(n,'day');
+const pn=()=>{for(const r of R)if(r.typ=='due'&&!r.amt){const c=R.find(x=>x.typ=='cl'&&x.cc==r.cc),lc=c&&nxt(c,TD,-1),du=nxt(r,TD,1);if(lc!=null&&du!=null&&du-lc<=31)return{r,lc,du}}return 0};
+const dq=()=>{if(!P.rem)return 0;for(const r of R)if(r.typ=='due'&&r.amt){const du=nxt(r,TD,1);if(du!=null&&du-TD<=P.rem)return{r,du}}return 0};
+const BAN=p=>`<section class="c" style="border-color:var(--pri);background:var(--tint)"><p><b>${t('clBan').replace('{c}',an(p.r.cc)).replace('{r}',rel(p.lc-TD))}</b></p><p class="m">${t('clAsk').replace('{d}',ds(p.du))}</p><button class="btn p" style="margin-top:.5rem" data-a="pay" data-c="${p.r.cc}">${t('payB')}</button></section>`;
+const DUE=q=>`<section class="c" style="border-color:var(--cau)"><p><b>${t('duBan').replace('{c}',an(q.r.cc)).replace('{a}',fmt(q.r.amt)).replace('{r}',rel(q.du-TD))}</b></p></section>`;
+const OB=()=>{const st=[[R.some(r=>r.typ=='inc'),'ob1'],[A.some(a=>a.kd=='d'),'ob2'],[A.some(a=>a.kd=='c'),'ob3']];if(st.every(x=>x[0]))return'';
+return `<section class="c" style="border-color:var(--pri)"><b>${t('obT')}</b><p class="m">${t('obH')}</p>`+st.map(([d,k],i)=>`<div class="ev"><span>${d?'✓ ':''}${t(k)}</span>${d?`<small>${t('done')}</small>`:`<button class="btn" data-a="ob" data-i="${i}">${t('addB')}</button>`}</div>`).join('')+'</section>'};
+const FAC=()=>`<details${S.fo?' open':''}><summary style="min-height:48px;display:flex;align-items:center;font-weight:600">${t('fac')}</summary><p class="m">${t('facH')}</p>${F('fdt',t('fdate'),`<input id="fdt" type="date" min="${iso(TD)}" value="${iso(TD)}">`)}<div class="chips" style="margin-top:.75rem"><button class="btn" data-a="smp">${t('smp')}</button><button class="btn" data-a="del">${t('del')}</button></div></details>`;
 const SC={
-home(){return `<h1 tabindex="-1">${t('hi')}</h1>
-<section class="c"><p class="m">${t('have')}</p><p class="big">${fmt(bal(TD))}</p><p class="m">${t('est')}</p></section>
-<section class="c g"><p class="m">${t('can')}</p><p class="big pos">${fmt(Math.max(0,safe(TD)))}</p><p class="m">${t('why')}</p></section>
-<h2>${t('up')}</h2>${upc(3)}
-<h2>${t('quick')}</h2><div class="chips">${Q.map((q,i)=>`<button class="btn" data-a="q" data-i="${i}">+ ${t(q.k)} ${fmt(q.amt)}</button>`).join('')}</div>
+home(){const p=pn(),q=dq(),fr=!A.length&&!R.length;return `<div class="hd"><h1 tabindex="-1">${t('hi')}</h1><button class="btn" data-a="tab" data-t="set" aria-label="${t('set')}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true">${GEAR}</svg></button></div>
+${P.off?`<p class="m">${t('fday').replace('{d}',ds(TD))}</p>`:''}${OB()}${fr?'':`<section class="c"><p class="m">${t('have')}</p><p class="big">${fmt(bal(TD))}</p><p class="m">${t('est')}</p></section>`}
+${fr?'':`<section class="c g"><p class="m">${t('can')}</p><p class="big pos">${fmt(Math.max(0,safe(TD)))}</p><p class="m">${t('why')}</p></section>`}${q?DUE(q):''}
+${p?BAN(p):''}<h2>${t('up')}</h2>${upc(3)}
+${A.some(a=>a.kd=='d')?`<h2>${t('quick')}</h2><div class="chips">${Q.map((q,i)=>`<button class="btn" data-a="q" data-i="${i}">+ ${t(q.k)} ${fmt(q.amt)}</button>`).join('')}</div>`:''}
 <section class="c" style="margin-top:1.25rem"><b>${t('tipT')}</b><p>${t('tip')}</p></section>`},
 cal(){const v=S.cv,d=S.cd,f=fd(d);let title,b='';
 if(v=='week'){title=ds(d)+' – '+ds(d+6);for(let i=0;i<7;i++){const n=d+i;b+=`<h3><span>${ds(n)}</span><span class="m">${t('bal')} ${fmt(bal(n))}</span></h3>`+evs(n).map(row).join('')}}
@@ -126,46 +147,57 @@ r=`<p aria-live="polite"><b>${a>=0?'✓ '+t('ok').replace('{a}',fmt(a)):'● '+t
 for(let i=0;i<7;i++){const n=d+i,b=bal(n);r+=`<div class="ev" role="group" aria-label="${ds(n)}: ${fmt(b)} → ${fmt(b-tot)}"><span>${ds(n)}</span><span>${fmt(b)} → <span class="sim">${fmt(b-tot)}</span></span></div>`}}
 return `<h1 tabindex="-1">${t('sim')}</h1><label for="sd">${t('sday')}</label><input type="date" id="sd" value="${iso(d)}">
 <section class="c" style="margin-top:.75rem"><p class="m">${t('have')}</p><p class="big">${fmt(bal(d))}</p></section>
-<h2>${t('plan')}</h2><div class="row"><div><label class="vh" for="sa">${t('amt')}</label><input id="sa" type="number" inputmode="decimal" min="0.01" step="any" placeholder="${t('amt')}"></div><div><label class="vh" for="sc">${t('cat')}</label><select id="sc">${op(CATS.map(c=>[c,t(c)]))}</select></div></div>
+${R.length?'':`<p class="m">${t('simNo')}</p>`}<h2>${t('plan')}</h2><div class="row"><div><label class="vh" for="sa">${t('amt')}</label><input id="sa" type="number" inputmode="decimal" min="0.01" step="any" placeholder="${t('amt')}"></div><div><label class="vh" for="sc">${t('cat')}</label><select id="sc">${op(CATS.map(c=>[c,t(c)]))}</select></div></div>
 <button class="btn p" data-a="as" style="margin:.6rem 0">${t('addS')}</button>
 ${S.sl.map((x,i)=>`<div class="ev"><span><span class="sim">${t('simd')}</span> ${t(x.cat)} ${fmt(x.amt)}</span><button class="btn" data-a="rs" data-i="${i}">${t('rm')}</button></div>`).join('')}
 <section class="c" style="margin-top:.75rem">${r}<p class="m">${t('note')}</p></section>`},
-cards(){return `<h1 tabindex="-1">${t('cards')}</h1>`+A.map(a=>`<section class="c"><b>${t(a.kd=='d'?'debit':'credit')} · ${a.n} ••${a.num}</b><p class="big">${fmt(est(a))}</p><p class="m">${t(a.kd=='d'?'est2':'availC')}</p>${a.kd=='c'?`<p class="m">${t('cd').replace('{a}',a.cl).replace('{b}',a.du)}</p>`:''}</section>`).join('')+`<p class="m">${t('priv')}</p>`},
-goals(){return `<h1 tabindex="-1">${t('goals')}</h1>`+G.map((g,i)=>{const p=Math.min(100,Math.round(g.sv/g.amt*100)),ti=t('g'+g.p).replace('{a}',fmt(g.amt));
-return `<section class="c"><b>${ti}</b><div class="bar" role="progressbar" aria-label="${ti}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}" aria-valuetext="${p}%"><i data-w="${p}"></i></div><p class="m">${p}% · ${t('of').replace('{a}',fmt(g.sv)).replace('{b}',fmt(g.amt))}</p><p>${t(p>=100?'g2':p?'g1':'g0')}</p><button class="btn" data-a="gs" data-i="${i}" style="margin-top:.5rem">${t('plus').replace('{a}',fmt(50))}</button></section>`}).join('')}};
+cards(){return `<h1 tabindex="-1">${t('cards')}</h1>`+A.map(a=>`<section class="c"><b>${t(a.kd=='d'?'debit':'credit')} · ${a.n} ••${a.num}</b><p class="big">${fmt(est(a))}</p><p class="m">${t(a.kd=='d'?'est2':'availC')}</p>${a.kd=='c'?`<p class="m">${t('cd').replace('{a}',a.cl).replace('{b}',a.du)}</p>`:''}</section>`).join('')+(A.length?'':`<p>${t('noCard')}</p>`)+`<p class="m">${t('priv')}</p>`},
+goals(){return `<h1 tabindex="-1">${t('goals')}</h1>`+(G.length?'':`<p>${t('noGoal')}</p>`)+G.map((g,i)=>{const p=Math.min(100,Math.round(g.sv/g.amt*100)),ti=t('g'+g.p).replace('{a}',fmt(g.amt));
+return `<section class="c"><b>${ti}</b><div class="bar" role="progressbar" aria-label="${ti}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}" aria-valuetext="${p}%"><i data-w="${p}"></i></div><p class="m">${p}% · ${t('of').replace('{a}',fmt(g.sv)).replace('{b}',fmt(g.amt))}</p><p>${t(p>=100?'g2':p?'g1':'g0')}</p><button class="btn" data-a="gs" data-i="${i}" style="margin-top:.5rem">${t('plus').replace('{a}',fmt(50))}</button></section>`}).join('')},
+set(){const o=(id,l,a,v)=>F(id,l,`<select id="${id}">${op(a).replace(`"${v}"`,`"${v}" selected`)}</select>`);
+return `<div class="hd"><button class="btn" data-a="tab" data-t="home" aria-label="${t('back')}">‹</button><h1 tabindex="-1">${t('set')}</h1></div>`
++o('sl',t('slang'),[['auto',t('auto')],['es','Español'],['en','English']],P.lang)+o('st',t('stext'),[[100,t('s1')],[125,t('s2')],[150,t('s3')]],P.ts)+o('sh',t('stheme'),[['system',t('auto')],['light',t('light')],['dark',t('dark')]],P.th)+o('sm',t('smot'),[['system',t('auto')],['reduce',t('reduce')]],P.mo)+o('sr',t('srem'),[[0,t('off')],[1,t('d1')],[3,t('d3')],[5,t('d5')]],P.rem)
++`<section class="c" style="margin-top:1.25rem"><b>${t('sample')}</b><p>${t('sampleT')}</p><p class="big">${fmt(1234.5)}</p></section><p class="m">${t('setNote')}</p>`+FAC()}};
 const IC={home:'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>',cards:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',cal:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',sim:'<path d="M4 7h8M18 7h2M4 17h2M12 17h8"/><circle cx="15" cy="7" r="2.5"/><circle cx="9" cy="17" r="2.5"/>',goals:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>'};
 const FL={home:['add','mov'],cal:['add','mov'],cards:['addC','card'],goals:['addG','goal']};
 function render(fid){M.innerHTML=SC[S.tab]();
 N.innerHTML=Object.keys(IC).map(k=>`<button data-a="tab" data-t="${k}"${k==S.tab?' aria-current="page"':''}><svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>${t(k)}</button>`).join('');
 const f=FL[S.tab];FAB.hidden=!f;if(f)FAB.innerHTML='<span aria-hidden="true">+ </span>'+t(f[0]);
 requestAnimationFrame(()=>document.querySelectorAll('.bar i').forEach(i=>i.style.width=i.dataset.w+'%'));
-if(fid){const e=$('#'+fid);e&&e.focus()}}
+save();if(fid){const e=$('#'+fid);e&&e.focus()}}
 function go(k){S.tab=k;render();M.scrollTop=0;const h=M.querySelector('h1');h&&h.focus()}
 /* toast + sheets */
 let tt;function toast(m,acts=[],ms=6000){clearTimeout(tt);TO.hidden=false;TO.innerHTML=`<span>${m}</span>`;acts.forEach(([l,fn])=>{const b=document.createElement('button');b.className='btn';b.textContent=l;b.onclick=()=>{TO.hidden=true;fn()};TO.append(b)});if(ms)tt=setTimeout(()=>TO.hidden=true,ms)}
 const lock=v=>[M,N,FAB].forEach(x=>x.inert=v);
 function closeSh(){OV.hidden=true;OV.innerHTML='';lock(false);LF&&LF.focus()}
-function sheet(title,body,cb){LF=document.activeElement;lock(true);OV.hidden=false;
-OV.innerHTML=`<form class="sh" role="dialog" aria-modal="true" aria-labelledby="sht"><h2 id="sht" style="margin-top:0">${title}</h2>${body}<div class="btns"><button type="button" class="btn" data-a="x">${t('cancel')}</button><button class="btn p">${t('save')}</button></div></form>`;
-OV.querySelector('input,select').focus();OV.querySelector('form').onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));closeSh();cb(f)}}
+function sheet(title,body,cb,ok){LF=document.activeElement;lock(true);OV.hidden=false;
+OV.innerHTML=`<form class="sh" role="dialog" aria-modal="true" aria-labelledby="sht"><h2 id="sht" style="margin-top:0">${title}</h2>${body}<p id="er" role="alert" hidden style="color:var(--cau);font-weight:600;margin-top:.75rem"></p><div class="btns"><button type="button" class="btn" data-a="x">${t('cancel')}</button><button class="btn p">${ok||t('save')}</button></div></form>`;
+(OV.querySelector('input,select')||OV.querySelector('button')).focus();OV.querySelector('form').onsubmit=e=>{e.preventDefault();const m=cb(Object.fromEntries(new FormData(e.target)));if(m){const x=$('#er');x.textContent=m;x.hidden=false}else closeSh()}}
 const F=(id,l,h)=>`<label for="${id}">${l}</label>${h}`;
-const num=(id,l,x='')=>F(id,l,`<input id="${id}" name="${id}" type="number" inputmode="decimal" min="0.01" step="any" required ${x}>`);
-function addMov(){sheet(t('add'),F('typ',t('type'),`<select id="typ" name="typ">${op([['exp',t('exp')],['inc',t('inc')]])}</select>`)+num('amt',t('amt'))+F('cat',t('cat'),`<select id="cat" name="cat">${op(CATS.map(c=>[c,t(c)]))}</select>`)+F('desc',t('desc'),'<input id="desc" name="desc" maxlength="40">')+F('f',t('rep'),`<select id="f" name="f">${op([['once',t('once')],['daily',t('daily')],['weekly',t('weekly')],['monthly',t('monthly')]])}</select>`)+F('dt',t('date'),`<input id="dt" name="dt" type="date" value="${iso(TD)}" required>`)+F('ac',t('acc'),`<select id="ac" name="ac">${op(A.map(a=>[a.id,t(a.kd=='d'?'debit':'credit')+' · '+an(a.id)]))}</select>`),f=>{
+const num=(id,l,x='')=>F(id,l,`<input id="${id}" name="${id}" type="number" inputmode="decimal" ${/min=/.test(x)?'':'min="0.01" '}${/step=/.test(x)?'':'step="any" '}required ${x}>`);
+function addMov(ty='exp',fr='once'){sheet(t('add'),F('typ',t('type'),`<select id="typ" name="typ">${op([['exp',t('exp')],['inc',t('inc')]]).replace(`"${ty}"`,`"${ty}" selected`)}</select>`)+num('amt',t('amt'))+F('cat',t('cat'),`<select id="cat" name="cat">${op(CATS.map(c=>[c,t(c)]))}</select>`)+F('desc',t('desc'),'<input id="desc" name="desc" maxlength="40">')+F('f',t('rep'),`<select id="f" name="f">${op([['once',t('once')],['daily',t('daily')],['weekly',t('weekly')],['monthly',t('monthly')]]).replace(`"${fr}"`,`"${fr}" selected`)}</select>`)+F('dt',t('date'),`<input id="dt" name="dt" type="date" value="${iso(TD)}" required>`)+F('ac',t('acc'),`<select id="ac" name="ac">${op(A.length?A.map(a=>[a.id,t(a.kd=='d'?'debit':'credit')+' · '+an(a.id)]):[['',t('noacc')]])}</select>`),f=>{
 const s=pd(f.dt);R.push({t:f.desc||t(f.cat),typ:f.typ,amt:+f.amt,f:f.f,s,ac:f.ac,pl:f.f!='once',cat:f.cat});render();toast(t('added'),[[t('undo'),()=>{R.pop();render()}]],8000)})}
-function addCard(){sheet(t('addC'),F('kd',t('type'),`<select id="kd" name="kd">${op([['d',t('debit')],['c',t('credit')]])}</select>`)+F('n',t('bank'),'<input id="n" name="n" required maxlength="20">')+F('num',t('l4'),'<input id="num" name="num" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required>')+`<div class="db">${num('b',t('cur'),'value="0" min="0"')}</div><div class="cr" hidden>${num('lim',t('lim'),'disabled')}${num('cl',t('clo'),'disabled min="1" max="31" step="1"')}${num('du',t('due'),'disabled min="1" max="31" step="1"')}</div><p class="m" style="margin-top:.75rem">${t('priv')}</p>`,f=>{
+function addCard(kd='d'){const c0=kd=='c';sheet(t('addC'),F('kd',t('type'),`<select id="kd" name="kd">${op([['d',t('debit')],['c',t('credit')]]).replace(`"${kd}"`,`"${kd}" selected`)}</select>`)+F('n',t('bank'),'<input id="n" name="n" required maxlength="20">')+F('num',t('l4'),'<input id="num" name="num" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required>')+`<div class="db"${c0?' hidden':''}>${num('b',t('cur'),(c0?'disabled ':'')+'value="0" min="0"')}</div><div class="cr"${c0?'':' hidden'}>${num('lim',t('lim'),c0?'':'disabled')}${num('cl',t('clo'),(c0?'':'disabled ')+'min="1" max="31" step="1"')}${num('du',t('due'),(c0?'':'disabled ')+'min="1" max="31" step="1"')}</div><p class="m" style="margin-top:.75rem">${t('priv')}</p>`,f=>{
 const c=f.kd=='c',id='a'+Date.now();A.push(c?{id,kd:'c',n:f.n,num:f.num,lim:+f.lim,used:0,cl:+f.cl,du:+f.du}:{id,kd:'d',n:f.n,num:f.num,b:+f.b});
-if(c){const d1=A.find(a=>a.kd=='d').id;R.push({k:'ccl',typ:'cl',amt:0,f:'monthly',s:TD,dom:+f.cl,ac:d1,cc:id,pl:true},{k:'cdu',typ:'due',amt:0,f:'monthly',s:TD,dom:+f.du,ac:d1,cc:id,pl:true})}
-render();if(!asked){asked=1;toast(t('rem'),[[t('yes'),()=>{try{Notification.requestPermission()}catch(e){}}],[t('later'),()=>{}]],0)}})}
+if(c){const d1=(A.find(a=>a.kd=='d')||{id:''}).id;R.push({k:'ccl',typ:'cl',amt:0,f:'monthly',s:TD,dom:+f.cl,ac:d1,cc:id,pl:true},{k:'cdu',typ:'due',amt:0,f:'monthly',s:TD,dom:+f.du,ac:d1,cc:id,pl:true})}
+render();if(!asked){asked=1;toast(t('rem'),[[t('yes'),()=>{P.rem=3;prefs();try{Notification.requestPermission()}catch(e){}}],[t('later'),()=>{P.rem=0;prefs()}]],0)}})}
 function addGoal(){sheet(t('addG'),F('p',t('gper'),`<select id="p" name="p">${op([['w',t('weekly')],['d',t('daily')],['m',t('monthly')]])}</select>`)+num('amt',t('gamt')),f=>{G.push({p:f.p,amt:+f.amt,sv:0});render()})}
+function pay(cc){const r=R.find(x=>x.typ=='due'&&x.cc==cc);if(!r)return;const o=r.amt,v=x=>x?`value="${x}"`:'';
+sheet(t('payT')+' · '+an(cc),`<p class="m">${t('payH')}</p>`+num('mn',t('mn'),v(r.mn))+num('fl',t('fl'),v(r.fl))+F('pk',t('pk'),`<select id="pk" name="pk">${op([['fl',t('fl')],['mn',t('mn')]])}</select>`),f=>{
+if(+f.mn>+f.fl)return t('errMn');r.mn=+f.mn;r.fl=+f.fl;r.amt=f.pk=='fl'?r.fl:r.mn;render();toast(t('payOk'),[[t('undo'),()=>{r.amt=o;render()}]],8000)})}
 /* events */
-const X={tab:b=>go(b.dataset.t),x:closeSh,fab:()=>({home:addMov,cal:addMov,cards:addCard,goals:addGoal})[S.tab](),
-q:b=>{const q=Q[+b.dataset.i];R.push({k:q.k,typ:'exp',amt:q.amt,f:'once',s:TD,ac:A.find(a=>a.kd=='d').id,pl:false,cat:q.cat});render();toast(t('added'),[[t('undo'),()=>{R.pop();render()}]],8000)},
+const X={tab:b=>go(b.dataset.t),ob:b=>[()=>addMov('inc','weekly'),()=>addCard('d'),()=>addCard('c')][+b.dataset.i](),
+smp:()=>{S.fo=1;sheet(t('smp'),`<p>${t('smpQ')}</p>`,()=>{sample();render();toast(t('smpOk'))},t('smp'))},
+del:()=>{S.fo=1;sheet(t('del'),`<p>${t('delQ')}</p>`,()=>{wipe();render();toast(t('delOk'))},t('del'))},pay:b=>pay(b.dataset.c),x:closeSh,fab:()=>({home:addMov,cal:addMov,cards:addCard,goals:addGoal})[S.tab](),
+q:b=>{const q=Q[+b.dataset.i];R.push({k:q.k,typ:'exp',amt:q.amt,f:'once',s:TD,ac:(A.find(a=>a.kd=='d')||{id:''}).id,pl:false,cat:q.cat});render();toast(t('added'),[[t('undo'),()=>{R.pop();render()}]],8000)},
 pv:()=>step(-1),nx:()=>step(1),td:()=>{S.cd=TD;render()},day:b=>{S.cd=+b.dataset.n;S.cv='day';render()},
 as:()=>{const v=+$('#sa').value;if(v>0){S.sl.push({amt:v,cat:$('#sc').value});render('sa')}else $('#sa').focus()},
 rs:b=>{S.sl.splice(+b.dataset.i,1);render()},gs:b=>{G[+b.dataset.i].sv+=50;render()}};
 function step(s){const v=S.cv;if(v=='month'){const f=fd(S.cd);S.cd=dn(new Date(f.getFullYear(),f.getMonth()+s,1))}else S.cd+=s*(v=='week'?7:1);render()}
 $('#app').onclick=e=>{const b=e.target.closest('[data-a]');b&&X[b.dataset.a]&&X[b.dataset.a](b)};
 $('#app').onchange=e=>{const i=e.target.id,v=e.target.value;
+if(i=='fdt'&&v){const n=pd(v);if(n>TD){P.off=(P.off||0)+n-TD;roll(n);prefs();S.fo=1;render('fdt');toast(t('dateOk').replace('{d}',ds(TD)))}}
+const SK={sl:'lang',st:'ts',sh:'th',sm:'mo',sr:'rem'};if(SK[i]){P[SK[i]]=(i=='st'||i=='sr')?+v:v;prefs();render(i)}
 if(i=='cv'){S.cv=v;render('cv')}
 if(i=='sd'&&v){S.sd=pd(v);render('sd')}
 if(i=='kd'){const c=v=='c';OV.querySelector('.cr').hidden=!c;OV.querySelector('.db').hidden=c;OV.querySelectorAll('.cr input').forEach(x=>x.disabled=!c);OV.querySelectorAll('.db input').forEach(x=>x.disabled=c)}};
