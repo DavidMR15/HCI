@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -188,13 +187,13 @@ b+='</div><h2>'+t('up')+'</h2>'+upc(3)}
 return `<h1 tabindex="-1">${t('cal')}</h1><label class="vh" for="cv">${t('view')}</label><select id="cv">${op([['week',t('vw')],['day',t('vd')],['month',t('vm')]]).replace(`"${v}"`,`"${v}" selected`)}</select>
 <div class="top"><button class="btn" data-a="pv" aria-label="${t('prev')}">‹</button><b>${title}</b><button class="btn" data-a="nx" aria-label="${t('next')}">›</button></div>
 <button class="btn" data-a="td" style="margin-bottom:.5rem">${t('today')}</button>${b}`},
-sim(){const d=S.sd,tot=S.sl.reduce((s,x)=>s+x.amt,0),sf=safe(d);let r=`<p class="m">${t('empty')}</p>`;
+sim(){const dr=S.dr||{},d=S.sd,tot=S.sl.reduce((s,x)=>s+x.amt,0),sf=safe(d);let r=`<p class="m">${t('empty')}</p>`;
 if(tot){const a=sf-tot;let td=d;for(let i=0;i<7;i++)if(bal(d+i)-tot<0){td=d+i;break}
 r=`<p aria-live="polite"><b>${a>=0?'✓ '+t('ok').replace('{a}',fmt(a)):'● '+t('tight').replace('{d}',ds(td)).replace('{a}',fmt(Math.max(0,sf)))}</b></p>`;
 for(let i=0;i<7;i++){const n=d+i,b=bal(n);r+=`<div class="ev" role="group" aria-label="${ds(n)}: ${fmt(b)} → ${fmt(b-tot)}"><span>${ds(n)}</span><span>${fmt(b)} → <span class="sim">${fmt(b-tot)}</span></span></div>`}}
 return `<h1 tabindex="-1">${t('sim')}</h1><label for="sd">${t('sday')}</label><input type="date" id="sd" value="${iso(d)}">
 <section class="c" style="margin-top:.75rem"><p class="m">${t('have')}</p><p class="big">${fmt(bal(d))}</p></section>
-${R.length?'':`<p class="m">${t('simNo')}</p>`}<h2>${t('plan')}</h2>${F('sn',t('nmL'),'<input id="sn" maxlength="40">')}<div class="row"><div><label for="sa">${t('amt')}</label><input id="sa" type="number" inputmode="decimal" min="0.01" step="any"></div><div><label for="sc">${t('cat')}</label><select id="sc">${op(CATS.map(c=>[c,t(c)]))}</select></div></div>${F('sac',t('acc'),`<select id="sac">${accOp(1)}</select>`)}
+${R.length?'':`<p class="m">${t('simNo')}</p>`}<h2>${t('plan')}</h2>${F('sn',t('nmL'),`<input id="sn" maxlength="40" value="${esc(dr.sn||'')}">`)}<div class="row"><div><label for="sa">${t('amt')}</label><input id="sa" type="number" inputmode="decimal" min="0.01" step="any" value="${esc(dr.sa||'')}"></div><div><label for="sc">${t('cat')}</label><select id="sc">${op(CATS.map(c=>[c,t(c)])).replace(`"${dr.sc}"`,`"${dr.sc}" selected`)}</select></div></div>${F('sac',t('acc'),`<select id="sac">${accOp(1).replace(`"${dr.sac}"`,`"${dr.sac}" selected`)}</select>`)}
 <button class="btn p" data-a="as" style="margin:.6rem 0">${t('addS')}</button>
 ${S.sl.map((x,i)=>`<div class="ev"><span><span class="sim">${t('simd')}</span> ${esc(x.nm)} · ${t(x.cat)} · ${esc(an(x.ac))} ${fmt(x.amt)}</span><button class="btn" data-a="rs" data-i="${i}">${t('rm')}</button></div>`).join('')}
 <section class="c" style="margin-top:.75rem">${r}<p class="m">${t('note')}</p></section>${S.sl.length?`<button class="btn p" data-a="ap" style="width:100%;margin-top:.25rem">${t('applyB')}</button>`:''}`},
@@ -260,12 +259,13 @@ smp:()=>{S.fo=1;sheet(t('smp'),`<p>${t('smpQ')}</p>`,()=>{sample();render();toas
 del:()=>{S.fo=1;sheet(t('del'),`<p>${t('delQ')}</p>`,()=>{wipe();render();toast(t('delOk'))},t('del'))},pay:b=>pay(b.dataset.c),x:closeSh,fab:()=>({home:addMov,cal:addMov,cards:addCard,goals:addGoal})[S.tab](),
 q:b=>{const q=Q[+b.dataset.i];const r={k:q.k,typ:'exp',amt:q.amt,f:'once',s:TD,ac:dA(),pl:false,cat:q.cat},m=t('addedExp')+': '+t(q.k)+' '+fmt(q.amt);R.push(r);render();toast(m,[[t('undo'),()=>{const i=R.indexOf(r);if(i>=0)R.splice(i,1);render()},t('undoA').replace('{x}',m)]],8000)},
 pv:()=>step(-1),nx:()=>step(1),td:()=>{S.cd=TD;render()},day:b=>{S.cd=+b.dataset.n;S.cv='day';render()},
-as:()=>{const v=+$('#sa').value,n=$('#sn').value.trim();if(!n){$('#sn').focus();return}if(!(v>0)){$('#sa').focus();return}S.sl.push({amt:v,cat:$('#sc').value,nm:n,ac:$('#sac').value});render('sn')},
+as:()=>{const v=+$('#sa').value,n=$('#sn').value.trim();if(!n){$('#sn').focus();return}if(!(v>0)){$('#sa').focus();return}S.sl.push({amt:v,cat:$('#sc').value,nm:n,ac:$('#sac').value});S.dr={};render('sn')},
 rs:b=>{S.sl.splice(+b.dataset.i,1);render()},gs:b=>{const g=G[+b.dataset.i];sheet(t('plus'),num('amt',t('amt')),f=>{g.sv+=+f.amt;render()})}};
 function step(s){const v=S.cv;if(v=='month'){const f=fd(S.cd);S.cd=dn(new Date(f.getFullYear(),f.getMonth()+s,1))}else S.cd+=s*(v=='week'?7:1);render()}
 $('#app').onsubmit=e=>{if(e.target.id=='lf'){e.preventDefault();tryLogin()}};
 $('#app').onclick=e=>{const b=e.target.closest('[data-a]');b&&X[b.dataset.a]&&X[b.dataset.a](b)};
-$('#app').onchange=e=>{const i=e.target.id,v=e.target.value;
+$('#app').oninput=e=>{const i=e.target.id;if(i=='sn'||i=='sa')(S.dr=S.dr||{})[i]=e.target.value};
+$('#app').onchange=e=>{const i=e.target.id,v=e.target.value;if(i=='sc'||i=='sac')(S.dr=S.dr||{})[i]=v;
 if(i=='typ'){const b=v=='inc';OV.querySelector('.ct').hidden=b;OV.querySelector('.ct select').disabled=b}
 if(i=='p'){const b=v=='by';OV.querySelector('.gb').hidden=!b;OV.querySelector('.gb input').disabled=!b}
 if(i=='fdt'&&v){const n=pd(v);if(n>TD){P.off=(P.off||0)+n-TD;roll(n);prefs();S.fo=1;render('fdt');toast(t('dateOk').replace('{d}',ds(TD)))}}
